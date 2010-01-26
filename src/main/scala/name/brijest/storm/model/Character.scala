@@ -15,17 +15,15 @@ trait CharacterView extends ElementView with Agent {
   def canWalkOn(t: Terrain): Boolean = t.walkable
   def isOwned = owner != NoOwner
   def isGameCharacter = false
-  def calculateNeededTurns(a: CharacterAction): Long
 }
 
-abstract case class Character() extends CharacterView with Element with CharacterAdapter {
+abstract class Character extends CharacterView with Element with CharacterAdapter {
   trait CharacterPerspective extends Manager {
     abstract override def timedAction(modelview: ModelView) = super.timedAction(view(modelview))
     abstract override def eventAction(e: Event, mv: ModelView) = super.eventAction(e, view(mv))
   }
   
   def onOwnAction(a: CharacterAction) {}
-  def calculateNeededTurns(a: CharacterAction) = 1L
   
   override def hashCode = id.toInt
   override def equals(that: Any) = that match {

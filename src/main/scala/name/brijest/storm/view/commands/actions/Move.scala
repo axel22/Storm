@@ -19,7 +19,7 @@ trait MoveCreator extends CommandCreator {
     val Some(chr) = cc.modelview.character(chrid)
     if (cc.modelview.walkable(chr, pos + dir)) {
       val moveaction = new MoveCharacter(chrid, pos + dir)
-      ActionCommand(moveaction, chr.calculateNeededTurns(moveaction))
+      ActionCommand(moveaction)
     } else {
       new GuiChangeCommand {
         def modify(gui: GuiState) = {

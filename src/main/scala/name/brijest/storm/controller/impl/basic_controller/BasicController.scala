@@ -27,8 +27,8 @@ class BasicController(w: World, player: PlayerOwner, gs: GuiState) extends Contr
       val command = commandcreator.create(BasicContext(modelview, guistate, owner))
       guistate.renderAdapter.clearMessages
       command match {
-        case ActionCommand(action, time) =>
-          Some((action, time))
+        case ActionCommand(action) =>
+          Some((action, action.turnsNeeded(modelview.character(owner.characterid).get)))
         case gct: GuiChangeActionCommand =>
           guistate = gct.modify(guistate)
           render(modelview)

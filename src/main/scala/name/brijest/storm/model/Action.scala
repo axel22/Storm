@@ -1,6 +1,8 @@
 package name.brijest.storm.model
 
 
+import name.brijest.storm.model.impl.characters.GameCharacter
+import name.brijest.storm.model.impl.characters.SomeGameCharacter
 
 
 abstract class Action extends Function[ModelAdapter, Unit] {
@@ -20,6 +22,17 @@ trait CharacterAction extends Action {
       case None =>
     }
     super.apply(m)
+  }
+  
+  def turnsNeeded(chr: CharacterView) = chr match {
+    case SomeGameCharacter(gc) => calculateNeededTurns(gc)
+    case _ => 1L
+  }
+  
+  private def calculateNeededTurns(gc: GameCharacter): Long = {
+    val apneeded = -(gc.actionpoints - timecost)
+    if (apneeded <= 0) 1
+    else apneeded / gc.speed + 1
   }
 }
 

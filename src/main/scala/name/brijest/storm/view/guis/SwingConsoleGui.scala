@@ -15,3 +15,4 @@ class SwingConsoleGui(csi: net.slashie.libjcsi.wswing.WSwingConsoleInterface) ex
 
 class SwingConsoleRenderAdapter(val wcsi: WSwingConsoleInterface)
 extends ConsoleRenderAdapter(wcsi)
+

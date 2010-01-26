@@ -41,7 +41,7 @@ class MessageCommandCreator(msg: String) extends CommandCreator with NoBinding {
 
 trait Command
 
-case class ActionCommand(action: Action, time: Long) extends Command
+case class ActionCommand(action: CharacterAction) extends Command
 
 abstract class GuiChangeCommand() extends Command {
   def modify(gui: GuiState): GuiState

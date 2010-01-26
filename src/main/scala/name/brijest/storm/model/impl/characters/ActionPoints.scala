@@ -11,15 +11,10 @@ trait ActionPoints extends Character {
   
   abstract override def onOwnAction(a: CharacterAction) {
     super.onOwnAction(a)
-    val neededturns = calculateNeededTurns(a)
+    val neededturns = a.turnsNeeded(this)
     actionpoints -= a.timecost
     if (actionpoints > 0) actionpoints = 0
     actionpoints += neededturns * speed
   }
   
-  override def calculateNeededTurns(a: CharacterAction): Long = {
-    val apneeded = -(actionpoints - a.timecost)
-    if (apneeded <= 0) 1
-    else apneeded / speed + 1
-  }
 }
