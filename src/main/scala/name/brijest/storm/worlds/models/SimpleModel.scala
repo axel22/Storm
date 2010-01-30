@@ -34,6 +34,9 @@ class SimpleModel(val id: Long, sz: (Int, Int)) extends BasicModel(sz) {
       def description = ""
       def view(mv: ModelView) = mv
       def id = 1
+      def attributes = new {
+        def strength = 1
+      }
     }
     ad.addCharacter((5, 5), chr)
   }

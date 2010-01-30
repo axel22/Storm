@@ -2,5 +2,6 @@
 /bin
 
 # project files
+.classpath
 .scala_dependencies
 .project

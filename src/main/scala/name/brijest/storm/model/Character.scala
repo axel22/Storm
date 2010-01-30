@@ -17,7 +17,11 @@ trait CharacterView extends ElementView with Agent {
   def isGameCharacter = false
 }
 
-abstract class Character extends CharacterView with Element with CharacterAdapter {
+abstract class Character extends CharacterView
+                            with CharacterAdapter
+                            with Element
+                            with ElementLike[Character, CharacterView]
+{
   trait CharacterPerspective extends Manager {
     abstract override def timedAction(modelview: ModelView) = super.timedAction(view(modelview))
     abstract override def eventAction(e: Event, mv: ModelView) = super.eventAction(e, view(mv))
@@ -25,6 +29,7 @@ abstract class Character extends CharacterView with Element with CharacterAdapte
   
   def onOwnAction(a: CharacterAction) {}
   
+  override def view: CharacterView = this
   override def hashCode = id.toInt
   override def equals(that: Any) = that match {
     case c: Character => id == c.id
