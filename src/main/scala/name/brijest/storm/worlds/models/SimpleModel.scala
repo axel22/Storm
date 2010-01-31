@@ -8,7 +8,7 @@ import name.brijest.storm.model.impl.models._
 import name.brijest.storm.model._
 
 
-class SimpleModel(val id: Long, sz: (Int, Int)) extends BasicModel(sz) {
+class SimpleModel(val id: mid, sz: (Int, Int)) extends BasicModel(sz) {
   private def init = {
     // setup terrain
     val ad = createModelAdapter
@@ -28,12 +28,12 @@ class SimpleModel(val id: Long, sz: (Int, Int)) extends BasicModel(sz) {
     val chr = new PlayerCharacter {
       def speed = 100
       def playerColor = Color.blue
-      def owner = PlayerOwner(1, 1)
+      def owner = PlayerOwner(1, gcid(1))
       def name = "Mihovil"
       def typename = "Human"
       def description = ""
       def view(mv: ModelView) = mv
-      def id = 1
+      def id = gcid(1)
       def attributes = new {
         def strength = 1
       }

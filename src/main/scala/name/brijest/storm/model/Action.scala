@@ -12,7 +12,7 @@ abstract class Action extends Function[ModelAdapter, Unit] {
 }
 
 trait CharacterAction extends Action {
-  def characterId: Long
+  def characterId: cid
   def timecost: Long
   def energycost: Long
   

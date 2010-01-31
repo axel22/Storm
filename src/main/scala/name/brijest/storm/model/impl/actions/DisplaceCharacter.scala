@@ -6,8 +6,8 @@ import name.brijest.storm.model._
 
 
 
-class DisplaceCharacter(chrid: Long, dest: (Int, Int)) extends Action {
-  case class event(chrid: Long, destination: (Int, Int)) extends Event {
+class DisplaceCharacter(chrid: cid, dest: (Int, Int)) extends Action {
+  case class event(chrid: cid, destination: (Int, Int)) extends Event {
     def text = None
     def position = Some(destination)
   }

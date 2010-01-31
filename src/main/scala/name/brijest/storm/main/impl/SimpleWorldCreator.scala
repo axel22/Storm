@@ -13,7 +13,7 @@ import name.brijest.storm.worlds.models.SimpleModel
 class SimpleWorldCreator extends WorldCreator {
   def createWorld = {
     val world = new BasicWorld()
-    world.addModel(new SimpleModel(1, (40, 20)))
+    world.addModel(new SimpleModel(mid(1), (40, 20)))
     world
   }
 }

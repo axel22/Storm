@@ -17,18 +17,18 @@ trait ModelAdapter extends ModelView {
   
   def elementsAt(pos: (Int, Int)): List[Element]
   def characterAt(pos: (Int, Int)): Option[Character]
-  def character(id: Long): Option[Character]
+  def character[Repr <: Character with View, View <: CharacterView](id: CharacterId[Repr, View]): Option[Repr]
   def characters: Iterator[CharacterView]
 }
 
 trait ModelView {
-  def id: Long
+  def id: mid
   def size: (Int, Int)
   def terrainAt(pos: (Int, Int)): Terrain
   def elementsAt(pos: (Int, Int)): List[ElementView]
   def characterAt(pos: (Int, Int)): Option[CharacterView]
-  def characterPos(id: Long): Option[(Int, Int)]
-  def character(id: Long): Option[CharacterView]
+  def characterPos[Repr <: Character, View <: CharacterView](id: CharacterId[Repr, View]): Option[(Int, Int)]
+  def character[Repr <: Character with View, View <: CharacterView](id: CharacterId[Repr, View]): Option[View]
   def characters: Iterator[CharacterView]
   def manager: Manager
   def neighbours(modelrepo: ModelRepository): List[ModelView]
@@ -50,7 +50,8 @@ trait ModelView {
     case Nil => false
     case lst => lst.contains(e)
   }
-  def hasCharacter(id: Long) = character(id) != None
+  def hasCharacter[Repr <: Character with View, View <: CharacterView](id: CharacterId[Repr, View]) =
+    character(id) != None
   def hasCharacterAt(pos: (Int, Int)) = characterAt(pos) match {
     case None => false
     case Some(chr) => true

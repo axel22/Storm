@@ -9,7 +9,7 @@ trait ElementView {
   def representation: (Char, Color)
 }
 
-trait ElementLike[+Repr <: ElementLike[Repr, View] with ElementAdapter, +View <: ElementView]
+trait ElementLike[+Repr <: Element, +View <: ElementView]
 extends ElementView with ElementAdapter {
   def adapter: Repr = this.asInstanceOf[Repr]
   def view: View = this.asInstanceOf[View]

@@ -1,4 +1,5 @@
-package name.brijest.storm.model.impl.actions
+package name.brijest.storm.model
+package impl.actions
 
 
 import name.brijest.storm.model._
@@ -6,7 +7,7 @@ import name.brijest.storm.model.model._
 import name.brijest.storm.model.impl.elements._
 
 
-class EatOwnFood(chrid: Long, what: Food) extends Action {
+class EatOwnFood(chrid: cid, what: Food) extends Action {
   def characterId = chrid
   def energycost = 0
   def timecost = what.eatingTime
