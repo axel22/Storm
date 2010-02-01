@@ -48,24 +48,37 @@ class ConsoleRenderAdapter(val csi: ConsoleSystemInterface) extends RenderAdapte
   }
   
   def wwidth = 79
+  
   def wheight = 25
   
   def flush = csi.refresh
+  
   def drawAt(pos: (Int, Int), rep: (Char, Color)) = csi.print(pos._1, pos._2 + 2, rep._1, rep._2)
+  
   def drawTerrainAt(pos: (Int, Int), t: Terrain) = drawAt(pos, t.representation)
+  
   def drawElementAt(pos: (Int, Int), e: ElementView) = drawAt(pos, e.representation)
+  
   def changeColorAt(pos: (Int, Int), col: Color) {
     val chr = csi.peekChar(pos._1, pos._2)
     csi.print(pos._1, pos._2, chr, col)
   }
+  
   def mapDimensions = ((0, 2), (wwidth, wheight - 5))
+  
   def clearMessages = {
     currentline = new firstline
     for (x <- 0 until wwidth; y <- 0 until 2) csi.print(x, y, " ")
   }
+  
   def writeMessage(message: String) = {
     currentline = currentline.write(message + " ")
   }
+  
+  def displayListDialog() {
+    
+  }
+  
 }
 
 
