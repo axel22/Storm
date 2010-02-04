@@ -12,13 +12,13 @@ class DisplaceCharacter(chrid: cid, dest: (Int, Int)) extends Action {
     def position = Some(destination)
   }
   
-  def apply(ad: ModelAdapter) {
+  def apply(ad: ModelAdapter) = {
     ad.characterPos(chrid) match {
       case Some(pos) => ad.moveCharacter(pos, dest)
       case None =>
     }
+    List[Event](event(chrid, dest))
   }
-  override def events = List(event(chrid, dest))
 }
 
 

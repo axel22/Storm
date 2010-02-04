@@ -8,3 +8,12 @@ package name.brijest.storm.model
 trait EventMatcher {
   def matches(e: Event): Boolean
 }
+
+
+object AllEvents extends EventMatcher {
+  def matches(e: Event) = true
+}
+
+
+
+

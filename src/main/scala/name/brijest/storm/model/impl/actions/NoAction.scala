@@ -5,5 +5,5 @@ import name.brijest.storm.model._
 
 
 object NoAction extends Action {
-  def apply(ad: ModelAdapter) {}
+  def apply(ad: ModelAdapter) = Nil
 }

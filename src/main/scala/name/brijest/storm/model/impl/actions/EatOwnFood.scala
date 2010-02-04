@@ -19,7 +19,8 @@ class EatOwnFood(chrid: cid, what: AbstractFood) extends Action {
       val effect = what.deed
       gc.receiveDeed(effect)
     }
-  }
+    Nil
+  }.get
 }
 
 

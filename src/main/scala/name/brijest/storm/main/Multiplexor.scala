@@ -3,6 +3,7 @@ package name.brijest.storm.main
 
 import name.brijest.storm.view._
 import name.brijest.storm.model._
+import name.brijest.storm.controller._
 import name.brijest.storm.model.gui._
 
 import name.brijest.storm.controller.impl.basic_controller.BasicController
@@ -25,8 +26,11 @@ object Multiplexor {
     case _ => throw new BadArgument("No render adapter named '" + nm + "'.")
   }
   
-  def controller(name: String, world: World, player: PlayerOwner, gui: Gui) = name match {
-    case "basic" => new BasicController(world, player, MainGuiState(gui.inputAdapter, gui.renderAdapter))
+  def controller(name: String, w: World, player: PlayerOwner, gui: Gui) = name match {
+    case "basic" => new BasicController(player.characterid) {
+      def view = gui.asInstanceOf[View]
+      def world = w
+    }
     case _ => throw new BadArgument("No controller named '" + name + "'.")
   }
   

@@ -1,4 +1,5 @@
-package name.brijest.storm.view
+package name.brijest.storm
+package view
 
 
 import name.brijest.storm.model._
@@ -23,7 +24,7 @@ case class BasicContext(modelview: ModelView, guistate: GuiState, player: Player
 trait CommandCreator {
   def bindings: Seq[List[Token]]
   def shortcut: String
-  def create(c: Context): Command
+  def create(c: Context): ViewCommand
 }
 
 trait NoBinding {
@@ -39,11 +40,11 @@ class MessageCommandCreator(msg: String) extends CommandCreator with NoBinding {
 
 /* commands */
 
-trait Command
+trait ViewCommand
 
-case class ActionCommand(action: CharacterAction) extends Command
+case class ActionCommand(action: CharacterAction) extends ViewCommand
 
-abstract class GuiChangeCommand() extends Command {
+abstract class GuiChangeCommand() extends ViewCommand {
   def modify(gui: GuiState): GuiState
 }
 
