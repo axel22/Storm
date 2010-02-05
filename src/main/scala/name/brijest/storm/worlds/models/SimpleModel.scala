@@ -28,7 +28,7 @@ class SimpleModel(val id: mid, sz: (Int, Int)) extends BasicModel(sz) {
     val chr = new PlayerCharacter {
       def speed = 100
       def playerColor = Color.blue
-      def owner = PlayerOwner(1, gcid(1))
+      def owner = PlayerOwner(pid(1), gcid(2))
       def name = "Mihovil"
       def typename = "Human"
       def description = ""

@@ -12,12 +12,16 @@ trait TurnBasedScheduler extends Scheduler {
   val listeners = new mutable.HashMap[EventMatcher, Manager]
   
   def onEvents(lst: List[Event])
-  def world: World
-  def model: Model
-  def pcId: cid
+  def targetCid: cid
   
   def startScheduling {
-    startActiveModelGame(model)
+    var gameover = false
+    while (!gameover && !stopCondition) {
+      world.locateCharacter(targetCid) match {
+        case Some(m) => startActiveModelGame(m)
+        case None => gameover = true
+      }
+    }
   }
   
   def registerManagers(managers: Seq[Manager]) {
@@ -38,7 +42,7 @@ trait TurnBasedScheduler extends Scheduler {
     
     // start the event loop
     val adapter = model.createModelAdapter
-    while (model.hasCharacter(pcId) && !queue.isEmpty) {
+    while (model.hasCharacter(targetCid) && !queue.isEmpty && !stopCondition) {
       val (time, manager) = queue.dequeue
       world.time = -time
       manager.timedAction(model) match {

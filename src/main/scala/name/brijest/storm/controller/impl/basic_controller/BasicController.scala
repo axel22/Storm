@@ -13,19 +13,11 @@ import scala.collection._
 /**
  * Basic controller for a one-player turn-based game.
  */
-abstract class BasicController(val pcId: cid)
+abstract class BasicController
 extends Controller with TurnBasedScheduler {
-
-  var model: Model = _
   
   def start {
-    var gameover = false
-    while (!gameover) {
-      world.locateCharacter(pcId) match {
-        case Some(m) => model = m; startScheduling
-        case None => gameover = true
-      }
-    }
+    startScheduling
   }
   
 //  class BootstrapManager(owner: PlayerOwner) extends TimeOnlyManager {
