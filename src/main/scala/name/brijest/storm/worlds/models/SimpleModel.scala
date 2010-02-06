@@ -36,7 +36,7 @@ class SimpleModel(val id: mid, sz: (Int, Int), world: World) extends BasicModel(
       def typename = "Human"
       def description = ""
       def view(mv: ModelView) = mv
-      def id = gcid(1)
+      def id = gcid(2)
       def attributes = new {
         def strength = 1
       }

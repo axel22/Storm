@@ -1,5 +1,5 @@
 package name.brijest.storm.view
-package commands
+package impl.commands
 
 
 
@@ -7,7 +7,7 @@ import actions._
 
 
 
-trait MainCommandRepository extends ExtendableCommandMatcher {
+trait MainCommandRepository extends CommandMatcher {
   // all main view command creators are registered here
   
   // movement

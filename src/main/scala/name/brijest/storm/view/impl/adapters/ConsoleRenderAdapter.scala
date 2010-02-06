@@ -1,4 +1,4 @@
-package name.brijest.storm.view.guis
+package name.brijest.storm.view.impl.adapters
 
 
 import name.brijest.storm.model.gui.RenderAdapter

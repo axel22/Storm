@@ -6,9 +6,11 @@ import name.brijest.storm.model._
 
 
 abstract class PlayerManager(val playerId: pid) extends TimeOnlyManager {
-  def world: World
+  def delegate: Manager
   
-  def timedAction(modelview: ModelView) = world.players(playerId).timedAction(modelview)
+  def timedAction(modelview: ModelView) = {
+    delegate.timedAction(modelview)
+  }
 }
 
 

@@ -1,4 +1,4 @@
-package name.brijest.storm.view.commands
+package name.brijest.storm.view.impl.commands
 
 
 import scala.collection._
@@ -6,7 +6,7 @@ import scala.collection._
 import name.brijest.storm.view._
 
 
-class MappedCommandMatcher extends ExtendableCommandMatcher {
+class MappedCommandMatcher extends CommandMatcher {
   private val cmap = new mutable.HashMap[List[Token], CommandCreator]
   private var maxlength = 0
   

@@ -1,4 +1,4 @@
-package name.brijest.storm.view.input
+package name.brijest.storm.view.impl.input
 
 
 import name.brijest.storm.model._

@@ -13,7 +13,7 @@ self =>
   def world: World
   def playerColor: Color
   def manager: Manager = new PlayerManager(playerId) with CharacterPerspective {
-    def world = self.world
+    def delegate = world.players(playerId)
   }
   
   def representation = ('@', playerColor)

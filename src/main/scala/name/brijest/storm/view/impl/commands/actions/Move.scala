@@ -1,4 +1,4 @@
-package name.brijest.storm.view.commands.actions
+package name.brijest.storm.view.impl.commands.actions
 
 
 import name.brijest.storm.model.impl.actions._

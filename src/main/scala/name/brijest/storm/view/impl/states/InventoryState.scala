@@ -1,11 +1,12 @@
 package name.brijest.storm.view
-package states
+package impl.states
 
 
 import name.brijest.storm.model.gui._
 
 
-class InventoryState(val inputAdapter: InputAdapter, val renderAdapter: RenderAdapter) extends GuiState {
+class InventoryState(ra: RenderAdapter)
+extends GuiState(ra) {
   def matcher = null
   def render(context: Context, topleft: (Int, Int)) {
     

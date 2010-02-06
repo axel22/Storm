@@ -5,10 +5,10 @@ import name.brijest.storm.model.gui.RenderAdapter
 import name.brijest.storm.model._
 
 
-trait GuiState {
+
+
+abstract class GuiState(val renderAdapter: RenderAdapter) {
   def render(context: Context, topleft: (Int, Int)): Unit
-  def renderAdapter: RenderAdapter
-  def inputAdapter: InputAdapter
   def matcher: CommandMatcher
 }
 
