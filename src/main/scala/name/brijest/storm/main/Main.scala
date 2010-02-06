@@ -35,7 +35,7 @@ object Main {
     val gui = Multiplexor.gui(argmap("renderer"))
     val creator = Multiplexor.worldCreator(argmap("world"))
     val world = creator.createWorld
-    val player = new PlayerOwner(pid(1), gcid(2))
+    val player = PlayerOwner(pid(1), gcid(2))
     val ctrl = Multiplexor.controller(argmap("ctrl"), world, player, gui)
     ctrl.start
   }

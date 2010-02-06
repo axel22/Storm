@@ -31,7 +31,6 @@ trait ModelView {
   def character[Repr <: Character with View, View <: CharacterView](id: CharacterId[Repr, View]): Option[View]
   def characters: Iterator[CharacterView]
   def manager: Manager
-  def neighbours(modelrepo: ModelRepository): List[ModelView]
   
   def extractManagers: Seq[Manager] = {
     var managers: List[Manager] = Nil
@@ -62,7 +61,6 @@ trait ModelView {
 abstract class Model extends ModelView {
   def createModelAdapter: ModelAdapter
   def receiveAction(a: Action) = a(createModelAdapter)
-  def neighbours(modelrepo: ModelRepository): List[Model]
 }
 
 

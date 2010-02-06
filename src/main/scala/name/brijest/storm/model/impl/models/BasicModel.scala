@@ -15,8 +15,6 @@ abstract class BasicModel(val size: (Int, Int)) extends Model with ModelAdapter 
   val elementmap = new mutable.HashMap[(Int, Int), List[Element]]
   val charactermap = new CharacterMap
 
-  def neighbours(modelrepo: ModelRepository): List[Model] = Nil
-  
   def terrainAt(pos: (Int, Int)) = terrain(pos._1, pos._2)
   
   def elementsAt(pos: (Int, Int)) = elementmap.get(pos) match {

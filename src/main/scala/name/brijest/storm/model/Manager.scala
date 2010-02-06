@@ -23,12 +23,12 @@ trait Manager extends Ordered[Manager] {
 }
 
 trait TimeOnlyManager extends Manager {
-  def eventAction(e: Event, modelview: ModelView) = None
+  def eventAction(e: Event, modelview: ModelView): Option[Action] = None
   def listens = Nil
 }
 
 trait EventOnlyManager extends Manager {
-  def timedAction = None
+  def timedAction: Option[(Action, Long)] = None
 }
 
 

@@ -1,14 +1,20 @@
-package name.brijest.storm.model.impl.characters
+package name.brijest.storm.model
+package impl
+package characters
 
 
 
-import name.brijest.storm.model._
+import managers._
 
 
 
-abstract class PlayerCharacter extends GameCharacter {
+abstract class PlayerCharacter(val playerId: pid) extends GameCharacter {
+self =>
+  def world: World
   def playerColor: Color
-  def manager: Manager = new impl.managers.DelegatingManager(impl.managers.PlayerManager) with CharacterPerspective
+  def manager: Manager = new PlayerManager(playerId) with CharacterPerspective {
+    def world = self.world
+  }
   
   def representation = ('@', playerColor)
 }

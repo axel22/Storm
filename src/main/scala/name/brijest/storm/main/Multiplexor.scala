@@ -28,7 +28,6 @@ object Multiplexor {
   
   def controller(name: String, w: World, player: PlayerOwner, gui: Gui) = name match {
     case "basic" => new BasicController {
-      def view = gui.asInstanceOf[View]
       def world = w
       def targetCid = player.characterid
       def stopCondition = false

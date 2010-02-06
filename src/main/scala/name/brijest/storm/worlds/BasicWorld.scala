@@ -11,10 +11,16 @@ class BasicWorld() extends World {
   private var modidc = 0L
   private var chridc = 0L
   
+  val players = new mutable.HashMap[pid, TimeOnlyManager]
+  
   var time = 0L
+  
   def addModel(m: Model) = models.put(m.id, m)
+  
   def locateCharacter(id: cid) = models.values.find(_.hasCharacter(id))
+  
   def locateModel(id: mid) = models.get(id)
+  
   def newPlayerId = {
     plidc += 1
     pid(plidc)
