@@ -3,7 +3,6 @@ package name.brijest.storm.worlds.models
 
 import name.brijest.storm.model.impl.characters._
 import name.brijest.storm.model.impl.managers._
-import name.brijest.storm.model.gui._
 import name.brijest.storm.model.impl.models._
 import name.brijest.storm.model._
 

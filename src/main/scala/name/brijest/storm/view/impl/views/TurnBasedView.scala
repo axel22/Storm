@@ -3,11 +3,10 @@ package impl.views
 
 
 import name.brijest.storm.model._
-import name.brijest.storm.model.gui._
 import name.brijest.storm.view.impl.states.MainGuiState
 
 
-class BasicView(ra: RenderAdapter, ia: InputAdapter, val player: PlayerOwner) extends View(ra, ia) {
+class TurnBasedView(ra: RenderAdapter, ia: InputAdapter, val player: PlayerOwner) extends View(ra, ia) {
   var guistate: GuiState = new MainGuiState(ra)
   
   def playerManager = new BootstrapManager

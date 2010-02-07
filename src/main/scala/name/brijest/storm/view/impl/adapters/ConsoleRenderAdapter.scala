@@ -1,8 +1,9 @@
-package name.brijest.storm.view.impl.adapters
+package name.brijest.storm.view
+package impl.adapters
 
 
-import name.brijest.storm.model.gui.RenderAdapter
 import name.brijest.storm.model._
+import name.brijest.storm.view.widget._
 
 import net.slashie.libjcsi._
 
@@ -75,11 +76,25 @@ class ConsoleRenderAdapter(val csi: ConsoleSystemInterface) extends RenderAdapte
     currentline = currentline.write(message + " ")
   }
   
-  def displayListDialog() {
-    
+  def displayDialog(w: Widget) = w.display(0, 2, wwidth, wheight - 2)  
+  
+  def printString(str: String, x: Int, y: Int, w: Int, h: Int): Int = {
+    csi.print(x, y, str.take(w - x))
+    str.length max (w - x)
   }
   
 }
+
+
+
+
+
+
+
+
+
+
+
 
 
 

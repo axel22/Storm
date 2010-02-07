@@ -1,7 +1,6 @@
 package name.brijest.storm.view
 
 
-import name.brijest.storm.model.gui.RenderAdapter
 import name.brijest.storm.model._
 
 

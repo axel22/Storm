@@ -1,7 +1,7 @@
-package name.brijest.storm.view.impl.states
+package name.brijest.storm.view
+package impl.states
 
 
-import name.brijest.storm.model.gui._
 import name.brijest.storm.model._
 import name.brijest.storm.model.model._
 import name.brijest.storm.model.model._
