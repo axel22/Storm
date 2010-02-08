@@ -21,7 +21,7 @@ extends InputAdapter {
   private def recManageInput(matcher: CommandMatcher, sofar: List[Token]): CommandCreator = {
     var entered = sofar
     readInput match {
-      case t @ Token(c, flags) if t.isEscape =>
+      case t @ KeyToken(c, flags) if t.isEscape =>
         println(t + ", " + t.isEscape)
         return new MessageCommandCreator("Command cancelled.")
       case inp @ _ =>
@@ -36,7 +36,7 @@ extends InputAdapter {
   
   private def readInput: Token = {
     val ck = wcsi.inkey
-    if (!ck.isNone) Token(ck)
+    if (!ck.isNone) KeyToken(ck)
     else readInput
   }
 }

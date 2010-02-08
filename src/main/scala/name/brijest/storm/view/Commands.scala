@@ -18,6 +18,15 @@ case class BasicContext(modelview: ModelView, guistate: GuiState, player: Player
 
 
 
+/* command matchers */
+
+trait CommandMatcher {
+  def matchinput(input: List[Token]): Option[CommandCreator]
+  def register(cc: CommandCreator): Unit
+}
+
+
+
 
 /* command creators */
 

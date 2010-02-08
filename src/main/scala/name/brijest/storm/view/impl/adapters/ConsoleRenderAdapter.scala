@@ -83,6 +83,21 @@ class ConsoleRenderAdapter(val csi: ConsoleSystemInterface) extends RenderAdapte
     str.length max (w - x)
   }
   
+  def displayMap(view: ModelView, location: (Int, Int)) {
+    import model._
+    val dims = mapDimensions
+    for (pos <- location to (location + dims._2)) {
+      val targetpos = pos - location
+      (view characterAt pos) match {
+        case None => (view elementsAt pos) match {
+          case Nil => drawTerrainAt(targetpos, (view terrainAt pos))
+          case elem :: tail => drawElementAt(targetpos, elem)
+        }
+        case Some(chr) => drawElementAt(targetpos, chr)
+      }
+    }
+  }
+  
 }
 
 

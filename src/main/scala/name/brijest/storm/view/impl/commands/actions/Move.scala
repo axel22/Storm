@@ -3,7 +3,8 @@ package name.brijest.storm.view.impl.commands.actions
 
 import name.brijest.storm.model.impl.actions._
 import name.brijest.storm.model.model._
-import name.brijest.storm.view.Token._
+import name.brijest.storm.view.KeyToken._
+import name.brijest.storm.view.view._
 import name.brijest.storm.view._
 
 
