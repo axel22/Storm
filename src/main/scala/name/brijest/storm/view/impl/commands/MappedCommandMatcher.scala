@@ -7,7 +7,7 @@ import name.brijest.storm.view._
 
 
 class MappedCommandMatcher extends CommandMatcher {
-  private val cmap = new mutable.HashMap[List[Token], CommandCreator]
+  private val cmap = new mutable.HashMap[Seq[Token], CommandCreator]
   private var maxlength = 0
   
   def register(command: CommandCreator) = for (b <- command.bindings) {

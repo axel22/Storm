@@ -31,7 +31,7 @@ trait CommandMatcher {
 /* command creators */
 
 trait CommandCreator {
-  def bindings: Seq[List[Token]]
+  def bindings: Seq[Seq[Token]]
   def shortcut: String
   def create(c: Context): ViewCommand
 }
