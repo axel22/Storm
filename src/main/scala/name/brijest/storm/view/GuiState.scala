@@ -2,15 +2,16 @@ package name.brijest.storm.view
 
 
 import name.brijest.storm.model._
+import name.brijest.storm.view.impl.states._
 
 
 
-
-abstract class GuiState(val renderAdapter: RenderAdapter) {
-  def render(context: Context, topleft: (Int, Int)): Unit
+trait GuiState extends States {
+  def renderer: Renderer
   def matcher: CommandMatcher
+  def writeMessage(message: String): Unit
+  def clearMessages(): Unit
 }
-
 
 
 

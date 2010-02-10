@@ -24,8 +24,8 @@ trait MoveCreator extends CommandCreator {
     } else {
       new GuiChangeCommand {
         def modify(gui: GuiState) = {
-          gui.renderAdapter.clearMessages
-          gui.renderAdapter.writeMessage("You cannot move there.")
+          gui.clearMessages
+          gui.writeMessage("You cannot move there.")
           gui
         }
       }

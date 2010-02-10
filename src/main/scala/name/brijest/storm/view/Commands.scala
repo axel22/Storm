@@ -61,8 +61,8 @@ abstract class GuiChangeActionCommand(val action: Action, val time: Long) extend
 
 case class MessageCommand(msg: String) extends GuiChangeCommand {
   def modify(gui: GuiState): GuiState = {
-    gui.renderAdapter.clearMessages
-    gui.renderAdapter.writeMessage(msg)
+    gui.clearMessages
+    gui.writeMessage(msg)
     gui
   }
 }
