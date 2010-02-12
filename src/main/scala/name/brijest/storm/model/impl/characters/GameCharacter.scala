@@ -23,11 +23,8 @@ extends Character
   override def isGameCharacter = true
 }
 
-object SomeGameCharacter {
-  def unapply(chr: CharacterView): Option[GameCharacter] = {
-    if (chr.isInstanceOf[GameCharacter]) Some(chr.asInstanceOf[GameCharacter]) else None
-  }
-}
+
+
 
 
 

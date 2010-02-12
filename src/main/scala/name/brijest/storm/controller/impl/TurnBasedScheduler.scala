@@ -5,6 +5,7 @@ package impl
 import scala.collection._
 
 import name.brijest.storm.model._
+import name.brijest.storm.model.impl.managers.PlayerManager
 
 
 trait TurnBasedScheduler extends Scheduler {
@@ -45,13 +46,19 @@ trait TurnBasedScheduler extends Scheduler {
     while (model.hasCharacter(targetCid) && !queue.isEmpty && !stopCondition) {
       val (time, manager) = queue.dequeue
       world.time = -time
-      manager.timedAction(model) match {
-        case Some((action, nextoffset)) =>
+      getAction(manager, model) match {
+        case Some((action)) =>
+          val nextoffset = action.turnsNeeded(model)
           action(adapter)
           queue.enqueue((time - nextoffset, manager))
         case None =>
       }
     }
+  }
+  
+  def getAction(manager: Manager, model: Model): Option[Action] = manager match {
+    case pm @ PlayerManager(pid) => pm.waitForTimedAction(model)
+    case _ => manager.timedAction(model)
   }
   
   def invokeAction(action: Action, modelview: ModelView, adapter: ModelAdapter) {

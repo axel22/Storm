@@ -7,12 +7,12 @@ import name.brijest.storm.model.model._
 import name.brijest.storm.model.impl.elements._
 
 
-class EatOwnFood(chrid: cid, what: AbstractFood) extends Action {
+class EatOwnFood(chrid: cid, what: AbstractFood) extends Action with CharacterAction {
   def characterId = chrid
   def energycost = 0
   def timecost = what.eatingTime
   
-  def apply(ad: ModelAdapter) = asGameCharacter(ad.character(chrid)) { gc => 
+  def performAction(ad: ModelAdapter) = asGameCharacter(ad.character(chrid)) { gc => 
     if (gc.stuff.remove(what)) {
       val energy = what.nutritionalValue
       gc.energypoints += energy

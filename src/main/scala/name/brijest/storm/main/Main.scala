@@ -4,6 +4,7 @@ package name.brijest.storm.main
 import scala.collection._
 
 import name.brijest.storm.model._
+import name.brijest.storm.model.impl.managers.PlayerManager
 import name.brijest.storm.view.impl.adapters._
 import name.brijest.storm.view.impl.input._
 import name.brijest.storm.view.impl.commands._
@@ -33,11 +34,11 @@ object Main {
   
   def run(argmap: Map[String, String]) {
     val player = PlayerOwner(pid(1), gcid(2))
-    val view = Multiplexor.view(argmap("view"), argmap("mod"), player)
     val creator = Multiplexor.worldCreator(argmap("world"))
     val world = creator.createWorld
     val ctrl = Multiplexor.controller(argmap("mod"), world, player)
-    world.players.put(player.index, view.playerManager)
+    val view = Multiplexor.view(argmap("view"), argmap("mod"), player, ctrl)
+    world.players.put(player.index, new PlayerManager(pid(1)))
     ctrl.start
   }
   

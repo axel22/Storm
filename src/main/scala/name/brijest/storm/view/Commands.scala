@@ -3,6 +3,7 @@ package view
 
 
 import name.brijest.storm.model._
+import name.brijest.storm.model.impl.actions.CharacterAction
 
 
 

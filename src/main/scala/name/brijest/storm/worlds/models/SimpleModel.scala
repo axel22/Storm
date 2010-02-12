@@ -26,7 +26,7 @@ class SimpleModel(val id: mid, sz: (Int, Int), world: World) extends BasicModel(
     }
     
     // add character
-    val chr = new PlayerCharacter(pid(1)) {
+    val chr = new world.PlayerCharacter(pid(1)) {
       def world = SimpleModel.this.world
       def speed = 100
       def playerColor = Color.blue

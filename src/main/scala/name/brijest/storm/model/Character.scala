@@ -1,6 +1,8 @@
 package name.brijest.storm.model
 
 
+import name.brijest.storm.model.impl.actions.CharacterAction
+
 
 trait CharacterAdapter extends ElementAdapter {
 }

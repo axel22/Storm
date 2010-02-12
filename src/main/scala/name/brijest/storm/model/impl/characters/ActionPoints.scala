@@ -3,7 +3,7 @@ package impl.characters
 
 
 import name.brijest.storm.model.Character
-import name.brijest.storm.model.CharacterAction
+import name.brijest.storm.model.impl.actions.CharacterAction
 
 
 trait ActionPointsView extends CharacterView {

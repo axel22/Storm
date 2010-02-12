@@ -13,10 +13,18 @@ import scala.collection._
 /**
  * Basic controller for a one-player turn-based game.
  */
-abstract class BasicController
+class BasicController(val world: World, val targetCid: cid, stop: () => Boolean)
 extends Controller with TurnBasedScheduler {
+  def stopCondition = stop()
+  
   def start {
     startScheduling
+  }
+  
+  def send(c: Command) = c match {
+    case commands.PlayerCommand(playerId, action) =>
+      world.players(playerId).push(action)
+    case _ =>
   }
 }
 

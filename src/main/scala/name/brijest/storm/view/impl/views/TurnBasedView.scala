@@ -3,17 +3,18 @@ package impl.views
 
 
 import name.brijest.storm.model._
+import name.brijest.storm.controller._
 import name.brijest.storm.view.impl.states.MainGuiState
 
 
-class TurnBasedView(ra: RenderAdapter, ia: InputAdapter, val player: PlayerOwner)
-extends View(ra, ia) with States {
+class BasicView(ra: RenderAdapter, ia: InputAdapter, val player: PlayerOwner, c: Controller)
+extends View(ra, ia, c) with States {
   var guistate: GuiState = new MainGuiState
   
   def playerManager = new BootstrapManager
     
   class BootstrapManager extends TimeOnlyManager {
-    def timedAction(modelview: ModelView): Option[(Action, Long)] = {
+    def timedAction(modelview: ModelView): Option[Action] = {
       // first render
       render(modelview)
       
@@ -23,11 +24,11 @@ extends View(ra, ia) with States {
       guistate.clearMessages
       command match {
         case ActionCommand(action) =>
-          Some((action, action.turnsNeeded(modelview.character(player.characterid).get)))
+          Some((action))
         case gct: GuiChangeActionCommand =>
           guistate = gct.modify(guistate)
           render(modelview)
-          Some((gct.action, gct.time))
+          Some((gct.action))
         case gct: GuiChangeCommand =>
           guistate = gct.modify(guistate)
           render(modelview)

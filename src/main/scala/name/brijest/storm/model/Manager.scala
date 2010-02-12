@@ -8,7 +8,7 @@ trait Manager extends Ordered[Manager] {
    * how many units of time must pass before the manager is invoked
    * again.
    */
-  def timedAction(modelview: ModelView): Option[(Action, Long)]
+  def timedAction(modelview: ModelView): Option[Action]
   /**
    * Returns an action if the specified event occured.
    */
@@ -28,7 +28,7 @@ trait TimeOnlyManager extends Manager {
 }
 
 trait EventOnlyManager extends Manager {
-  def timedAction: Option[(Action, Long)] = None
+  def timedAction: Option[Action] = None
 }
 
 

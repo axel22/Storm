@@ -2,6 +2,8 @@ package name.brijest.storm.worlds
 
 
 import name.brijest.storm.model._
+import name.brijest.storm.model.impl.managers.PlayerManager
+
 import scala.collection._
 
 
@@ -11,7 +13,7 @@ class BasicWorld() extends World {
   private var modidc = 0L
   private var chridc = 0L
   
-  val players = new mutable.HashMap[pid, TimeOnlyManager]
+  val players = new mutable.HashMap[pid, PlayerManager]
   
   var time = 0L
   
