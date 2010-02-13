@@ -9,9 +9,13 @@ trait Observable {
   private val observers = new mutable.HashMap[EventMatcher, List[Event => Unit]]
   
   def registerEvent(em: EventMatcher) = observers.put(em, Nil)
-  def addObserver(em: EventMatcher, observer: Event => Unit) = observers(em) = observer :: observers(em)
-  def removeObserver(em: EventMatcher, observer: Event => Unit) = observers(em) = 
-    observers(em).filter(_ != observer)
+  def addObserver(em: EventMatcher)(observer: Event => Unit) = {
+    if (!observers.contains(em)) registerEvent(em)
+    observers(em) = observer :: observers(em)
+  }
+  def removeObserver(em: EventMatcher, observer: Event => Unit) = if (observers.contains(em)) {
+    observers(em) = observers(em).filter(_ != observer)
+  }
   def onEvent(opt: Option[Event]): Unit = opt match {
     case Some(event) => onEvent(event)
     case None =>

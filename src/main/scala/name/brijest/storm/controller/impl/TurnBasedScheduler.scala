@@ -47,9 +47,9 @@ trait TurnBasedScheduler extends Scheduler {
       val (time, manager) = queue.dequeue
       world.time = -time
       getAction(manager, model) match {
-        case Some((action)) =>
+        case Some(action) =>
           val nextoffset = action.turnsNeeded(model)
-          action(adapter)
+          invokeAction(action, adapter)
           queue.enqueue((time - nextoffset, manager))
         case None =>
       }
@@ -61,10 +61,10 @@ trait TurnBasedScheduler extends Scheduler {
     case _ => manager.timedAction(model)
   }
   
-  def invokeAction(action: Action, modelview: ModelView, adapter: ModelAdapter) {
+  def invokeAction(action: Action, adapter: ModelAdapter) {
     val events = action(adapter)
     onEvents(events)
-    for (a <- dispatchEvents(events, modelview)) invokeAction(a, modelview, adapter)
+    for (a <- dispatchEvents(events, adapter)) invokeAction(a, adapter)
   }
   
   def dispatchEvents(events: List[Event], modelview: ModelView) = {
