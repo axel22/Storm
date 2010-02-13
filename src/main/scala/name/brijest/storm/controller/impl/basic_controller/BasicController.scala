@@ -13,7 +13,7 @@ import scala.collection._
 /**
  * Basic controller for a one-player turn-based game.
  */
-class BasicController(val world: World, val targetCid: cid, stop: () => Boolean)
+class BasicController(val world: World, val owner: PlayerOwner, stop: () => Boolean)
 extends Controller with TurnBasedScheduler {
   def stopCondition = stop()
   

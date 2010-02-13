@@ -14,6 +14,7 @@ trait Id[+Repr, +View] {
     case that: Id[_, _] => that.getClass == this.getClass && that.num == this.num
     case _ => false
   }
+  override def toString = getClass.getSimpleName + "[" + num + "]"
 }
 
 

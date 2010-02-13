@@ -2,7 +2,6 @@ package name.brijest.storm.main
 
 
 import scala.collection._
-import scala.actors.Actor._
 
 import name.brijest.storm.model._
 import name.brijest.storm.model.impl.managers.PlayerManager
@@ -35,23 +34,12 @@ object Main {
   }
   
   def run(argmap: Map[String, String]) {
-    val player = PlayerOwner(pid(1), gcid(2))
-    val creator = Multiplexor.worldCreator(argmap("world"))
+    val creator = Multiplexor.worldCreator(argmap("world"), argmap)
     val world = creator.createWorld
-    val ctrl = Multiplexor.controller(argmap("mod"), world, player)
-    val view = Multiplexor.view(argmap("view"), argmap("mod"), player, ctrl)
-    
-    deploy(world, ctrl, view, player, argmap)
-  }
-  
-  def deploy(w: World, ctrl: Controller, view: View, player: PlayerOwner, argmap: Map[String, String]) {
-    w.players.put(player.index, new PlayerManager(pid(1)))
-    
-    actor {
-      view.init
-    }
-    
-    ctrl.start
+    val player = Multiplexor.requestOwner(argmap("mod"), world, argmap)
+    val ctrl = Multiplexor.controller(argmap("mod"), world, player, argmap)
+    val view = Multiplexor.view(argmap("view"), argmap("mod"), player, argmap)
+    Multiplexor.deploy(argmap("mod"), world, ctrl, view, argmap)
   }
   
 }

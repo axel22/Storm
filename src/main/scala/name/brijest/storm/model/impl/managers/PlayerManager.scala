@@ -8,7 +8,7 @@ import name.brijest.storm.model.impl.actions.NoAction
 
 
 
-case class PlayerManager(val playerId: pid) extends TimeOnlyManager {
+case class PlayerManager(val owner: PlayerOwner) extends TimeOnlyManager {
   private val actions = new collection.mutable.Queue[Action]
   
   def timedAction(modelview: ModelView): Option[Action] = synchronized {

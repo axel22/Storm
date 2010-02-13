@@ -8,7 +8,7 @@ trait Owner
 
 case object NoOwner extends Owner
 
-case class PlayerOwner(val index: pid, val characterid: gcid) extends Owner
+case class PlayerOwner(val index: pid, val characterid: cid) extends Owner
 
 
 

@@ -13,6 +13,10 @@ trait Event {
 }
 
 
+case class PlayerTurn(p: pid, val modelId: mid) extends Event {
+  def text = None
+  def position = None
+}
 
 
 

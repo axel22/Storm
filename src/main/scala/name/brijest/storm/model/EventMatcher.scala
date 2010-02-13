@@ -15,5 +15,13 @@ object AllEvents extends EventMatcher {
 }
 
 
+case class PlayerTurnEvents(playerid: pid) extends EventMatcher {
+  def matches(e: Event) = e match {
+    case PlayerTurn(p, m) => playerid == p
+    case _ => false
+  }
+}
+
+
 
 
