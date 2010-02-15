@@ -44,7 +44,8 @@ extends View(ra, ia) with States {
   }
   
   private def render(modelview: ModelView) = {
-    guistate.renderer.render(ra, BasicContext(modelview, guistate, player), (0, 0))
+    val gs = guistate // to obtain a stable reference
+    gs.renderer.render(ra, gs.createContext(modelview, player))
     ra.flush
   }
   

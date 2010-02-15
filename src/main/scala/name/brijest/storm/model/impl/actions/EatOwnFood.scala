@@ -4,7 +4,7 @@ package impl.actions
 
 import name.brijest.storm.model._
 import name.brijest.storm.model.model._
-import name.brijest.storm.model.impl.elements._
+import name.brijest.storm.model.impl.elements.AbstractFood
 
 
 class EatOwnFood(chrid: cid, what: AbstractFood) extends Action with CharacterAction {

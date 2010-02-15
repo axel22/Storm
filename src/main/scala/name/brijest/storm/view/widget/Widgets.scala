@@ -6,7 +6,7 @@ package name.brijest.storm.view.widget
 
 trait Widgets {
   
-  def printString(str: String, x: Int, y: Int, w: Int, h: Int): Int
+  def drawLabel(str: String, x: Int, y: Int, w: Int, h: Int): (Int, Int)
   
   
   trait Widget {
@@ -24,7 +24,7 @@ trait Widgets {
   }
   
   case class Label(str: String) extends Widget {
-    def display(x: Int, y: Int, w: Int, h: Int): (Int, Int) = (printString(str, x, y, w, h), 1)
+    def display(x: Int, y: Int, w: Int, h: Int): (Int, Int) = drawLabel(str, x, y, w, h)
   }
   
 }

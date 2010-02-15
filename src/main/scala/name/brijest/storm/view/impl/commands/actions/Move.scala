@@ -8,11 +8,9 @@ import name.brijest.storm.view.view._
 import name.brijest.storm.view._
 
 
-/* Dummy for ant. */
-class Move
 
 trait MoveCreator extends CommandCreator {
-  def create(dir: (Int, Int), cc: Context) = {
+  def create(dir: (Int, Int), cc: Context[GuiState]) = {
     // check if its possible to move
     // then either change gui state to return an error message, or move character
     val chrid = cc.player.characterid
@@ -34,42 +32,42 @@ trait MoveCreator extends CommandCreator {
 }
 
 object MoveUpCreator extends MoveCreator {
-  def create(c: Context) = create((0, -1), c)
+  def create(c: Context[GuiState]) = create((0, -1), c)
   def bindings = Seq("u")
   def shortcut = "up"
 }
 object MoveRightUpCreator extends MoveCreator {
-  def create(c: Context) = create((1, -1), c)
+  def create(c: Context[GuiState]) = create((1, -1), c)
   def bindings = Seq("i")
   def shortcut = "upright"
 }
 object MoveLeftUpCreator extends MoveCreator {
-  def create(c: Context) = create((-1, -1), c)
+  def create(c: Context[GuiState]) = create((-1, -1), c)
   def bindings = Seq("y")
   def shortcut = "upleft"
 }
 object MoveDownCreator extends MoveCreator {
-  def create(c: Context) = create((0, 1), c)
+  def create(c: Context[GuiState]) = create((0, 1), c)
   def bindings = Seq("m")
   def shortcut = "down"
 }
 object MoveRightDownCreator extends MoveCreator {
-  def create(c: Context) = create((1, 1), c)
+  def create(c: Context[GuiState]) = create((1, 1), c)
   def bindings = Seq(",")
   def shortcut = "downright"
 }
 object MoveLeftDownCreator extends MoveCreator {
-  def create(c: Context) = create((-1, 1), c)
+  def create(c: Context[GuiState]) = create((-1, 1), c)
   def bindings = Seq("n")
   def shortcut = "downleft"
 }
 object MoveRightCreator extends MoveCreator {
-  def create(c: Context) = create((1, 0), c)
+  def create(c: Context[GuiState]) = create((1, 0), c)
   def bindings = Seq("k")
   def shortcut = "right"
 }
 object MoveLeftCreator extends MoveCreator {
-  def create(c: Context) = create((-1, 0), c)
+  def create(c: Context[GuiState]) = create((-1, 0), c)
   def bindings = Seq("h")
   def shortcut = "left"
 }

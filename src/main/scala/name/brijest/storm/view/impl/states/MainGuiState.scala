@@ -16,21 +16,21 @@ import name.brijest.storm.view.impl.adapters._
 /**
  * Renders map, message area, stats.
  */
-class MainRenderer extends Renderer {
-  def render(renderAdapter: RenderAdapter, context: Context, topleft: (Int, Int)) {
+class MainRenderer[State <: States#MainGuiState] extends Renderer[State] {
+  def render(renderAdapter: RenderAdapter, context: Context[State]) {
     renderStats(renderAdapter, context)
   }
   
-  def renderStats(ad: RenderAdapter, ctx: Context) {
+  def renderStats(ad: RenderAdapter, ctx: Context[State]) {
     // TODO
   }
 }
 
 
-trait MapRenderer extends Renderer {
-  abstract override def render(renderAdapter: RenderAdapter, context: Context, topleft: (Int, Int)) {
-    renderMap(renderAdapter, context.modelview, topleft)
-    super.render(renderAdapter, context, topleft)
+trait MapRenderer[State <: GuiState] extends Renderer[State] {
+  abstract override def render(renderAdapter: RenderAdapter, context: Context[State]) {
+    renderMap(renderAdapter, context.modelview, context.guistate.location)
+    //super.render(renderAdapter, context)
   }
   
   def renderMap(renderAdapter: RenderAdapter, view: ModelView, topleft: (Int, Int)) {

@@ -78,9 +78,9 @@ class ConsoleRenderAdapter(val csi: ConsoleSystemInterface) extends RenderAdapte
   
   def displayDialog(w: Widget) = w.display(0, 2, wwidth, wheight - 2)  
   
-  def printString(str: String, x: Int, y: Int, w: Int, h: Int): Int = {
+  def drawLabel(str: String, x: Int, y: Int, w: Int, h: Int): (Int, Int) = {
     csi.print(x, y, str.take(w - x))
-    str.length max (w - x)
+    (str.length max (w - x), 1)
   }
   
   def displayMap(view: ModelView, location: (Int, Int)) {

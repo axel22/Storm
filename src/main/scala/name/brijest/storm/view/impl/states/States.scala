@@ -20,7 +20,8 @@ base =>
   class InventoryState extends States with GuiState {
     def renderAdapter = base.renderAdapter
     val matcher = null // TODO
-    val renderer = null // TODO
+    val renderer = new InventoryRenderer[this.type] {}
+    def location = (0, 0)
   }
   
   /**
@@ -28,8 +29,9 @@ base =>
    */
   class MainGuiState extends States with GuiState {
     def renderAdapter = base.renderAdapter
-    val renderer = new MainRenderer with MapRenderer
     val matcher = new MappedCommandMatcher with MainCommandRepository
+    val renderer = new MainRenderer[this.type] with MapRenderer[this.type]
+    var location = (0, 0)
   }
   
 }

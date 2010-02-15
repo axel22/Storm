@@ -7,8 +7,8 @@ import name.brijest.storm.model.model._
 
 
 
-trait Renderer {
-  def render(renderAdapter: RenderAdapter, context: Context, topleft: (Int, Int))
+trait Renderer[State <: GuiState] {
+  def render(renderAdapter: RenderAdapter, context: Context[State])
 }
 
 
