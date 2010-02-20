@@ -55,6 +55,8 @@ class ConsoleRenderAdapter(val csi: ConsoleSystemInterface) extends RenderAdapte
   
   def flush = csi.refresh
   
+  def clear = csi.cls
+  
   def drawAt(pos: (Int, Int), rep: (Char, Color)) = csi.print(pos._1, pos._2 + 2, rep._1, rep._2)
   
   def drawTerrainAt(pos: (Int, Int), t: Terrain) = drawAt(pos, t.representation)
@@ -66,7 +68,9 @@ class ConsoleRenderAdapter(val csi: ConsoleSystemInterface) extends RenderAdapte
     csi.print(pos._1, pos._2, chr, col)
   }
   
-  def mapDimensions = ((0, 2), (wwidth, wheight - 5))
+  def mapDims = ((0, 2), (wwidth, wheight - 5))
+  
+  def screenDims = (wwidth, wheight)
   
   def clearMessages = {
     currentline = new firstline
@@ -87,7 +91,7 @@ class ConsoleRenderAdapter(val csi: ConsoleSystemInterface) extends RenderAdapte
   val frameInsets = (2, 0, 0, 0)
   
   def displayMap(view: ModelView, location: (Int, Int)) {
-    val dims = mapDimensions
+    val dims = mapDims
     for (pos <- location to (location + dims._2)) {
       val targetpos = pos - location
       (view characterAt pos) match {

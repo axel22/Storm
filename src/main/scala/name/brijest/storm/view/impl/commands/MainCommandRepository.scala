@@ -3,7 +3,7 @@ package impl.commands
 
 
 
-import actions._
+import name.brijest.storm.view.impl.commands.actions._
 
 
 
@@ -19,4 +19,7 @@ trait MainCommandRepository extends CommandMatcher {
   register(MoveRightDownCreator)
   register(MoveLeftCreator)
   register(MoveRightCreator)
+  
+  // view inventory
+  register(ViewInventoryCreator)
 }

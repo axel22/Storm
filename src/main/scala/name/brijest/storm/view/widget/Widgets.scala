@@ -13,7 +13,7 @@ trait Widgets {
     def display(x: Int, y: Int, w: Int, h: Int): (Int, Int)
   }
   
-  case class Listing(lst: List[Widget]) extends Widget {
+  case class Listing(lst: Seq[Widget]) extends Widget {
     def display(x: Int, y: Int, w: Int, h: Int): (Int, Int) = {
       var yp = y
       for (wd <- lst; if yp < y + h) {

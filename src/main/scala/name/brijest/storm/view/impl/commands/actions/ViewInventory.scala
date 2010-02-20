@@ -7,8 +7,20 @@ package impl.commands.actions
 
 
 
-class ViewInventoryCreator extends CommandCreator {
+object ViewInventoryCreator extends CommandCreator {
   def bindings = Seq("C-i".t)
   def shortcut = "inv"
-  def create(c: Context[GuiState]) = null
+  def create(c: Context[GuiState]) = new GuiChangeCommand {
+    def modify(gs: GuiState) = (new gs.InventoryState): GuiState
+  }
 }
+
+
+
+
+
+
+
+
+
+

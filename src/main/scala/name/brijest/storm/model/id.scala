@@ -40,11 +40,17 @@ object mid {
 trait CharacterId[+Repr <: Character, +View <: CharacterView] extends Id[Repr, View]
 
 
-class cid(val num: Long) extends CharacterId[Character, CharacterView]
+class cid(val num: Long) extends CharacterId[Character, CharacterView] {
+  def asgcid: Option[gcid] = this match {
+    case gcid(n) => Some(gcid(n))
+    case _ => None
+  }
+}
 
 
 object cid {
   def apply(n: Long) = new cid(n)
+  def unapply(any: Any) = if (any.isInstanceOf[cid]) Some(any.asInstanceOf[cid].num) else None
 }
 
 
@@ -53,6 +59,7 @@ class gcid(n: Long) extends cid(n) with CharacterId[GameCharacter, GameCharacter
 
 object gcid {
   def apply(n: Long) = new gcid(n)
+  def unapply(any: Any) = if (any.isInstanceOf[gcid]) Some(any.asInstanceOf[gcid].num) else None
 }
 
 

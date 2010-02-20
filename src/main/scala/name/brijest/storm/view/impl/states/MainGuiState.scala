@@ -28,7 +28,6 @@ class MainRenderer[State <: States#MainGuiState] extends Renderer[State] {
 trait MapRenderer[State <: GuiState] extends Renderer[State] {
   abstract override def render(renderAdapter: RenderAdapter, context: Context[State]) {
     renderMap(renderAdapter, context.modelview, context.guistate.location)
-    //super.render(renderAdapter, context)
   }
   
   def renderMap(renderAdapter: RenderAdapter, view: ModelView, topleft: (Int, Int)) {

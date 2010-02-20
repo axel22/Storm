@@ -10,9 +10,9 @@ import name.brijest.storm.model._
 /* command contexts */
 
 trait Context[State <: GuiState] {
-  def modelview: ModelView
-  def guistate: State
-  def player: PlayerOwner
+  val modelview: ModelView
+  val guistate: State
+  val player: PlayerOwner
 }
 
 

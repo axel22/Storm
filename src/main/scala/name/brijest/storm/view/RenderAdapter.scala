@@ -6,7 +6,9 @@ import name.brijest.storm.model._
 
 trait RenderAdapter extends widget.Widgets {
   def flush()
-  def mapDimensions: ((Int, Int), (Int, Int))
+  def clear()
+  def mapDims: ((Int, Int), (Int, Int))
+  def screenDims: (Int, Int)
   def writeMessage(message: String)
   def clearMessages()
   def displayMap(modelview: ModelView, location: (Int, Int))

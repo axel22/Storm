@@ -43,7 +43,7 @@ extends View(ra, ia) with States {
   }
   
   private def render(modelview: ModelView) = {
-    val gs = guistate // to obtain a stable reference
+    val gs = guistate // obtain a stable reference
     gs.renderer.render(ra, gs.createContext(modelview, player))
     ra.flush
   }
