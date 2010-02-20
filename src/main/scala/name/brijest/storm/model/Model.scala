@@ -1,7 +1,7 @@
 package name.brijest.storm.model
 
 
-import name.brijest.storm.model.model._
+import name.brijest.storm.model._
 
 
 trait ModelAdapter extends ModelView {

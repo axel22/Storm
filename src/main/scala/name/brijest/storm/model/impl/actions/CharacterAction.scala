@@ -4,7 +4,7 @@ package actions
 
 
 
-import name.brijest.storm.model.model._
+import name.brijest.storm.model._
 import characters.GameCharacter
 
 

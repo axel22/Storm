@@ -3,8 +3,6 @@ package impl.states
 
 
 import name.brijest.storm.model._
-import name.brijest.storm.model.model._
-import name.brijest.storm.model.model._
 import name.brijest.storm.view._
 import name.brijest.storm.view.impl.adapters._
 

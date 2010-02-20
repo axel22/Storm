@@ -2,9 +2,8 @@ package name.brijest.storm.view.impl.commands.actions
 
 
 import name.brijest.storm.model.impl.actions._
-import name.brijest.storm.model.model._
+import name.brijest.storm.model._
 import name.brijest.storm.view.KeyToken._
-import name.brijest.storm.view.view._
 import name.brijest.storm.view._
 
 
@@ -33,42 +32,42 @@ trait MoveCreator extends CommandCreator {
 
 object MoveUpCreator extends MoveCreator {
   def create(c: Context[GuiState]) = create((0, -1), c)
-  def bindings = Seq("u")
+  def bindings = Seq("u".t)
   def shortcut = "up"
 }
 object MoveRightUpCreator extends MoveCreator {
   def create(c: Context[GuiState]) = create((1, -1), c)
-  def bindings = Seq("i")
+  def bindings = Seq("i".t)
   def shortcut = "upright"
 }
 object MoveLeftUpCreator extends MoveCreator {
   def create(c: Context[GuiState]) = create((-1, -1), c)
-  def bindings = Seq("y")
+  def bindings = Seq("y".t)
   def shortcut = "upleft"
 }
 object MoveDownCreator extends MoveCreator {
   def create(c: Context[GuiState]) = create((0, 1), c)
-  def bindings = Seq("m")
+  def bindings = Seq("m".t)
   def shortcut = "down"
 }
 object MoveRightDownCreator extends MoveCreator {
   def create(c: Context[GuiState]) = create((1, 1), c)
-  def bindings = Seq(",")
+  def bindings = Seq(",".t)
   def shortcut = "downright"
 }
 object MoveLeftDownCreator extends MoveCreator {
   def create(c: Context[GuiState]) = create((-1, 1), c)
-  def bindings = Seq("n")
+  def bindings = Seq("n".t)
   def shortcut = "downleft"
 }
 object MoveRightCreator extends MoveCreator {
   def create(c: Context[GuiState]) = create((1, 0), c)
-  def bindings = Seq("k")
+  def bindings = Seq("k".t)
   def shortcut = "right"
 }
 object MoveLeftCreator extends MoveCreator {
   def create(c: Context[GuiState]) = create((-1, 0), c)
-  def bindings = Seq("h")
+  def bindings = Seq("h".t)
   def shortcut = "left"
 }
 

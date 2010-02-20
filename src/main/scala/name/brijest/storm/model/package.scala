@@ -1,4 +1,4 @@
-package name.brijest.storm.model
+package name.brijest.storm
 
 
 

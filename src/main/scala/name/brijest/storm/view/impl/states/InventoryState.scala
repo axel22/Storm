@@ -2,24 +2,31 @@ package name.brijest.storm.view
 package impl.states
 
 
+import name.brijest.storm.model._
 import name.brijest.storm.model.impl.characters.GameCharacter
 
 
-trait InventoryRenderer[State <: States#InventoryState] extends Renderer[State] {
-  def render(renderAdapter: RenderAdapter, context: Context[State]) {
-    val chr = context.modelview.character(context.player.characterid) match {
-      case Some(c) =>
-        if (c.isGameCharacter) displayStuff(renderAdapter, c.asInstanceOf[GameCharacter])
-        else renderAdapter.writeMessage("The character has no inventory.")
-      case None => renderAdapter.writeMessage("Cannot find player character.")
-    }
+
+trait InventoryUtils {
+  var offset = 0
+  
+  def renderAdapter: RenderAdapter
+  
+  def findStuff(modelview: ModelView, chrid: gcid) = modelview.character(chrid) match {
+    case Some(gc) => gc.stuff.groupBy(_.itemtype)
+    case None => collection.Map[ItemType, Item]()
   }
   
-  def displayStuff(ra: RenderAdapter, gc: GameCharacter) {
-    val stuffgroups = gc.stuff.groupBy(_.itemtype)
-    for ((itemtype, item) <- stuffgroups) {
-      
-    }
+  def screenWidgets(mv: ModelView, chrid: gcid) = {
+    val stuff = findStuff(mv, chrid)
+    
+  }
+}
+
+
+trait InventoryRenderer[State <: States#InventoryState] extends Renderer[State] {
+  def render(ra: RenderAdapter, context: Context[State]) {
+    
   }
 }
 

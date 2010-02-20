@@ -5,7 +5,6 @@ package impl.views
 import name.brijest.storm.model._
 import name.brijest.storm.controller._
 import name.brijest.storm.controller.impl.commands._
-import name.brijest.storm.view.impl.states.MainGuiState
 
 
 class TurnBasedView(ra: RenderAdapter, ia: InputAdapter, val player: PlayerOwner)

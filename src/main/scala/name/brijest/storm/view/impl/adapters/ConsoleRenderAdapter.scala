@@ -2,6 +2,7 @@ package name.brijest.storm.view
 package impl.adapters
 
 
+import name.brijest.storm.view._
 import name.brijest.storm.model._
 import name.brijest.storm.view.widget._
 
@@ -83,8 +84,9 @@ class ConsoleRenderAdapter(val csi: ConsoleSystemInterface) extends RenderAdapte
     (str.length max (w - x), 1)
   }
   
+  val frameInsets = (2, 0, 0, 0)
+  
   def displayMap(view: ModelView, location: (Int, Int)) {
-    import model._
     val dims = mapDimensions
     for (pos <- location to (location + dims._2)) {
       val targetpos = pos - location

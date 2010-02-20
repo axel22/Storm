@@ -1,7 +1,15 @@
 # binaries
 /bin
 
+# targets
+/target
+
+# misc dirs
+/externalToolBuilders
+
 # project files
 .classpath
 .scala_dependencies
 .project
+/project/boot/*
+/project/build/target/*

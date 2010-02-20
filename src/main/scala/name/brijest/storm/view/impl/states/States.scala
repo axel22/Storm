@@ -17,7 +17,7 @@ base =>
   def writeMessage(message: String) = renderAdapter.writeMessage(message)
   def clearMessages() = renderAdapter.clearMessages()
   
-  class InventoryState extends States with GuiState {
+  class InventoryState extends States with GuiState with InventoryUtils {
     def renderAdapter = base.renderAdapter
     val matcher = null // TODO
     val renderer = new InventoryRenderer[this.type] {}

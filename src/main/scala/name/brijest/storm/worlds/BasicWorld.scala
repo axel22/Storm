@@ -19,7 +19,7 @@ class BasicWorld() extends World {
   
   def addModel(m: Model) = models.put(m.id, m)
   
-  def locateCharacter(id: cid) = models.values.find(_.hasCharacter(id))
+  def locateCharacter(id: cid) = models.valuesIterator.find(_.hasCharacter(id))
   
   def locateModel(id: mid) = models.get(id)
   

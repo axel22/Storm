@@ -1,4 +1,4 @@
-package name.brijest.storm.model.impl.elements
+package name.brijest.storm.model
 
 
 

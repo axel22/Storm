@@ -1,4 +1,4 @@
-package name.brijest.storm.view
+package name.brijest.storm
 
 
 
@@ -13,7 +13,11 @@ package object view {
     def unapply(s: String): Option[Char] = if (s.startsWith("M-") && s.length == 3) Some(s.charAt(2)) else None
   }
   
-  implicit def string2TokenList(s: String): Seq[KeyToken] = s split " " map (_ match {
+  implicit def string2TokenString(s: String) = new {
+    def t = string2TokenList(s)
+  }
+  
+  def string2TokenList(s: String): Seq[KeyToken] = s split " " map (_ match {
     case ctrl(k) => KeyToken(k, KeyToken.CTRL)
     case alt(k) => KeyToken(k, KeyToken.ALT)
     case k if k.length == 1 => KeyToken(k.charAt(0), KeyToken.NOFLAGS)

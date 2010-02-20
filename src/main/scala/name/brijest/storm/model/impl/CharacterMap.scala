@@ -16,7 +16,7 @@ class CharacterMap {
     case None => None
   }
   def posWithId[Repr <: Character, View <: CharacterView](id: CharacterId[Repr, View]) = idmap.get(id)
-  def characters = posmap.values
+  def characters = posmap.valuesIterator
   def contains[Repr <: Character, View <: CharacterView](id: CharacterId[Repr, View]) = idmap.contains(id)
   def contains(pos: (Int, Int)) = posmap.contains(pos)
   def add(pos: (Int, Int), chr: Character) = {
