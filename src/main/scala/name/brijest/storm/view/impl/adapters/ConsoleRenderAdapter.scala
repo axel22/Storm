@@ -83,9 +83,17 @@ class ConsoleRenderAdapter(val csi: ConsoleSystemInterface) extends RenderAdapte
   
   def displayDialog(w: Widget) = w.display(0, 2, wwidth, wheight - 2)  
   
-  def drawLabel(str: String, x: Int, y: Int, w: Int, h: Int): (Int, Int) = {
-    csi.print(x, y, str.take(w - x))
-    (str.length max (w - x), 1)
+  def drawLabel(label: Label, x: Int, y: Int, w: Int, h: Int): (Int, Int) = {
+    val str = label.str
+    if (str.length >= w || !label.centered) {
+      csi.print(x, y, str.take(w - x))
+      (str.length max (w - x), 1)
+    } else {
+      csi.print(x + (w - str.length) / 2, y, str)
+      for (xp <- 0 until (x + (w - str.length) / 2 - 1)) csi.print(xp, y, "-")
+      for (xp <- (x + (w + str.length) / 2 + 1) to (x + w)) csi.print(xp, y, "-")
+      (w, 1)
+    }
   }
   
   val frameInsets = (2, 0, 0, 0)

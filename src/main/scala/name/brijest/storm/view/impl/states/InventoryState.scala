@@ -22,9 +22,10 @@ trait InventoryUtils {
   def generateList(mv: ModelView, chrid: gcid) = {
     val stuff = findStuff(mv, chrid)
     val stufflisting = renderAdapter.Listing((for ((tp, items) <- stuff) yield {
-      renderAdapter.Frame(tp.name, renderAdapter.Listing(for (it <- items) yield renderAdapter.Label(it.name)))
+      renderAdapter.Frame(renderAdapter.Label(tp.name, false),
+          renderAdapter.Listing(for (it <- items) yield renderAdapter.Label(it.name, false)))
     }).toSeq)
-    new renderAdapter.Frame("Inventory", stufflisting)
+    renderAdapter.Frame(renderAdapter.Label("Inventory", true), stufflisting)
   }
 }
 
