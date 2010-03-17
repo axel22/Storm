@@ -2,6 +2,8 @@ package name.brijest.storm.view
 package impl.views
 
 
+import scala.annotation.unchecked.uncheckedStable
+
 import name.brijest.storm.model._
 import name.brijest.storm.controller._
 import name.brijest.storm.controller.impl.commands._
@@ -25,18 +27,19 @@ extends View(ra, ia) with States {
   
   private def handleInput(modelview: ModelView) {
     // manage input action or change view
-    val commandcreator = ia.manageInput(guistate.matcher)
-    val command = commandcreator.create(BasicContext(modelview, guistate, player))
+    val gs = guistate
+    val commandcreator = ia.manageInput[gs.type](gs.commands.matcher)
+    val command = commandcreator.create(BasicContext[gs.type](modelview, gs, player))
     guistate.clearMessages
     command match {
-      case ActionCommand(action) =>
+      case gs.commands.ActionCommand(action) =>
         ctrl.send(PlayerCommand(player.index, action))
-      case gct: GuiChangeActionCommand =>
-        guistate = gct.modify(guistate)
+      case gs.commands.GuiChangeActionCommand(action, modifier) =>
+        guistate = modifier(gs)
         render(modelview)
-        ctrl.send(PlayerCommand(player.index, gct.action))
-      case gct: GuiChangeCommand =>
-        guistate = gct.modify(guistate)
+        ctrl.send(PlayerCommand(player.index, action))
+      case gs.commands.GuiChangeCommand(modifier) =>
+        guistate = modifier(gs)
         render(modelview)
         handleInput(modelview)
     }

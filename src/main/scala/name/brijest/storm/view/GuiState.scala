@@ -8,9 +8,9 @@ import name.brijest.storm.view.impl.states._
 
 
 
-trait GuiState extends States {
+trait GuiState extends States with Commands[GuiState] {
+  val commands: Commands[this.type] = this.asInstanceOf[Commands[this.type]]
   def renderer: Renderer[this.type]
-  def matcher: CommandMatcher
   def location: (Int, Int)
   def writeMessage(message: String): Unit
   def clearMessages(): Unit

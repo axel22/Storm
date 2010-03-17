@@ -2,6 +2,8 @@ package name.brijest.storm
 package view
 
 
+import scala.annotation.unchecked.uncheckedVariance
+
 import name.brijest.storm.model._
 import name.brijest.storm.model.impl.actions.CharacterAction
 
@@ -10,54 +12,57 @@ import name.brijest.storm.model.impl.actions.CharacterAction
 
 
 
-/* command matchers */
 
-trait CommandMatcher {
-  def matchinput(input: List[Token]): Option[CommandCreator]
-  def register(cc: CommandCreator): Unit
+trait Commands[St <: GuiState] {
+  
+  def matcher: Matcher
+  
+  trait Matcher {
+    def matchinput(input: List[Token]): Option[Creator]
+    def register(cc: Creator): Unit
+    def messageCommandCreator(msg: String) = new MessageCommandCreator(msg)
+  }
+  
+  trait Creator {
+    def bindings: Seq[Seq[Token]]
+    def shortcut: String
+    def create(c: Context[St]): ViewCommand
+  }
+  
+  class MessageCommandCreator(msg: String) extends Creator with NoBinding {
+    def create(c: Context[St]) = GuiChangeCommand { (gui: St) =>
+      gui.clearMessages
+      gui.writeMessage(msg)
+      gui
+    }
+  }
+  
+  /* commands */
+  
+  trait ViewCommand
+  
+  case class ActionCommand(action: CharacterAction) extends ViewCommand
+  
+  case class GuiChangeCommand(modifier: St => GuiState) extends ViewCommand {
+    def modify(gui: St): GuiState = modifier(gui)
+  }
+  
+  case class GuiChangeActionCommand(action: CharacterAction, modifier: St => GuiState) extends ViewCommand()
+  
 }
 
-
-
-
-/* command creators */
-
-trait CommandCreator {
-  def bindings: Seq[Seq[Token]]
-  def shortcut: String
-  def create(c: Context[GuiState]): ViewCommand
-}
 
 trait NoBinding {
   def bindings: Seq[List[Token]] = Nil
   def shortcut = ""
 }
 
-class MessageCommandCreator(msg: String) extends CommandCreator with NoBinding {
-  def create(c: Context[GuiState]) = new MessageCommand(msg)
-}
 
 
 
-/* commands */
 
-trait ViewCommand
 
-case class ActionCommand(action: CharacterAction) extends ViewCommand
 
-abstract class GuiChangeCommand() extends ViewCommand {
-  def modify(gui: GuiState): GuiState
-}
-
-abstract class GuiChangeActionCommand(val action: Action, val time: Long) extends GuiChangeCommand()
-
-case class MessageCommand(msg: String) extends GuiChangeCommand {
-  def modify(gui: GuiState): GuiState = {
-    gui.clearMessages
-    gui.writeMessage(msg)
-    gui
-  }
-}
 
 
 

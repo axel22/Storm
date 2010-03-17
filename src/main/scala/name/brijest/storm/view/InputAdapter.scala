@@ -6,5 +6,5 @@ package name.brijest.storm.view
  * Manages user input.
  */
 trait InputAdapter {
-  def manageInput(matcher: CommandMatcher): CommandCreator
+  def manageInput[St <: GuiState](matcher: Commands[St]#Matcher): Commands[St]#Creator
 }

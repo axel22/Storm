@@ -13,17 +13,17 @@ import net.slashie.libjcsi.wswing._
 
 class SwingKeyboardInputAdapter(val wcsi: WSwingConsoleInterface)
 extends InputAdapter {
-  def manageInput(matcher: CommandMatcher): CommandCreator = {
+  def manageInput[St <: GuiState](matcher: Commands[St]#Matcher): Commands[St]#Creator = {
     val cc = recManageInput(matcher, Nil)
     cc
   }
   
-  private def recManageInput(matcher: CommandMatcher, sofar: List[Token]): CommandCreator = {
+  private def recManageInput[St <: GuiState](matcher: Commands[St]#Matcher, sofar: List[Token]): Commands[St]#Creator = {
     var entered = sofar
     readInput match {
       case t @ KeyToken(c, flags) if t.isEscape =>
         println(t + ", " + t.isEscape)
-        return new MessageCommandCreator("Command cancelled.")
+        return matcher.messageCommandCreator("Command cancelled.")
       case inp @ _ =>
         entered ::= inp
     }
