@@ -8,7 +8,7 @@ import name.brijest.storm.view.impl.states._
 
 
 
-trait GuiState extends States with Commands[GuiState] {
+trait GuiState extends States {
   val commands: Commands[this.type] = this.asInstanceOf[Commands[this.type]]
   def renderer: Renderer[this.type]
   def location: (Int, Int)
