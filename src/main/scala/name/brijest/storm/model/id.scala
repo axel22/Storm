@@ -1,8 +1,8 @@
 package name.brijest.storm.model
 
 
-import name.brijest.storm.model.impl.characters.GameCharacter
-import name.brijest.storm.model.impl.characters.GameCharacterView
+import name.brijest.storm.model.impl.characters.RPGCharacter
+import name.brijest.storm.model.impl.characters.RPGCharacterView
 
 
 
@@ -54,7 +54,7 @@ object cid {
 }
 
 
-class gcid(n: Long) extends cid(n) with CharacterId[GameCharacter, GameCharacterView]
+class gcid(n: Long) extends cid(n) with CharacterId[RPGCharacter, RPGCharacterView]
 
 
 object gcid {

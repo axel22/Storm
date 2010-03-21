@@ -26,7 +26,7 @@ self =>
   def locateModel(modelId: mid): Option[Model]
   def locateCharacter(characterId: cid): Option[Model]
   
-  abstract class PlayerCharacter(val playerId: pid) extends impl.characters.GameCharacter {
+  abstract class PlayerRPGCharacter(val playerId: pid) extends impl.characters.RPGCharacter {
     def playerColor: Color
     def manager: Manager = self.players(playerId)
     def representation = ('@', playerColor)

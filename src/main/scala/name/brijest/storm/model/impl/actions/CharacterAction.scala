@@ -5,7 +5,7 @@ package actions
 
 
 import name.brijest.storm.model._
-import characters.GameCharacter
+import characters.RPGCharacter
 
 
 trait CharacterAction extends Action {
@@ -26,11 +26,11 @@ trait CharacterAction extends Action {
   override def turnsNeeded(modelview: ModelView): Long = turnsNeeded(modelview.character(characterId).get) 
   
   def turnsNeeded(chr: CharacterView): Long = chr match {
-    case gc: GameCharacter => calculateNeededTurns(gc)
+    case gc: RPGCharacter => calculateNeededTurns(gc)
     case _ => 1L
   }
   
-  private def calculateNeededTurns(gc: GameCharacter): Long = {
+  private def calculateNeededTurns(gc: RPGCharacter): Long = {
     val apneeded = -(gc.actionpoints - timecost)
     if (apneeded <= 0) 1
     else apneeded / gc.speed + 1

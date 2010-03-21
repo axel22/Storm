@@ -11,7 +11,7 @@ class EatOwnFood(chrid: cid, what: AbstractFood) extends Action with CharacterAc
   def energycost = 0
   def timecost = what.eatingTime
   
-  def performAction(ad: ModelAdapter) = asGameCharacter(ad.character(chrid)) { gc => 
+  def performAction(ad: ModelAdapter) = asRPGCharacter(ad.character(chrid)) { gc => 
     if (gc.stuff.remove(what)) {
       val energy = what.nutritionalValue
       gc.energypoints += energy

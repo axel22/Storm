@@ -9,10 +9,8 @@ package impl.commands.actions
 
 trait InventoryActions extends Commands[States#InventoryState] {
   
-  val InventoryMovementCreator = new Creator {
-    def bindings = Seq("n".t)
-    def shortcut = "n"
-    def create(c: Context[States#InventoryState]) = GuiChangeCommand { gs: States#InventoryState =>
+  trait InventoryMovementCreator extends Creator {
+    def create(c: Context[States#InventoryState], dir: Int) = GuiChangeCommand { gs: States#InventoryState =>
       gs // TODO
     }
   }

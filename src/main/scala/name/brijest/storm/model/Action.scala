@@ -1,7 +1,7 @@
 package name.brijest.storm.model
 
 
-import name.brijest.storm.model.impl.characters.GameCharacter
+import name.brijest.storm.model.impl.characters.RPGCharacter
 
 
 abstract class Action extends Function[ModelAdapter, List[Event]] {

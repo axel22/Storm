@@ -18,7 +18,7 @@ trait CharacterView extends ElementView with Agent {
   def view(modelview: ModelView): ModelView
   def canWalkOn(t: Terrain): Boolean = t.walkable
   def isOwned = owner != NoOwner
-  def isGameCharacter = false
+  def isRPGCharacter = false
 }
 
 

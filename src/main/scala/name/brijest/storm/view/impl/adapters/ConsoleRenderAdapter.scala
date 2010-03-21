@@ -86,7 +86,8 @@ class ConsoleRenderAdapter(val csi: ConsoleSystemInterface) extends RenderAdapte
   def drawLabel(label: Label, x: Int, y: Int, w: Int, h: Int): (Int, Int) = {
     val str = label.str
     if (str.length >= w || !label.centered) {
-      csi.print(x, y, str.take(w - x))
+      if (label.highlighted) csi.print(x, y, str.take(w - x), Color.indigo)
+      else csi.print(x, y, str.take(w - x))
       (str.length max (w - x), 1)
     } else {
       csi.print(x + (w - str.length) / 2, y, str)

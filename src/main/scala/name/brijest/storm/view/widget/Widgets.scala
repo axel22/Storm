@@ -36,13 +36,12 @@ trait Widgets {
     }
   }
   
-  class Label(val str: String, val centered: Boolean) extends Widget {
+  class Label(val str: String, val centered: Boolean, val highlighted: Boolean) extends Widget {
     def display(x: Int, y: Int, w: Int, h: Int): (Int, Int) = drawLabel(this, x, y, w, h)
   }
   
   object Label {
-    def apply(str: String) = new Label(str, false)
-    def apply(str: String, centered: Boolean) = new Label(str, centered)
+    def apply(str: String, centered: Boolean = false, highlighted: Boolean = false) = new Label(str, centered, highlighted)
   }
   
 }

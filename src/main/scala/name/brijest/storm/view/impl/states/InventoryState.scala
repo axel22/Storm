@@ -5,25 +5,32 @@ package impl.states
 import scala.collection._
 
 import name.brijest.storm.model._
-import name.brijest.storm.model.impl.characters.GameCharacter
+import name.brijest.storm.model.impl.characters.RPGCharacter
 import widget._
 
 
 trait InventoryUtils {
   var offset = 0
+  var selected = 0
   
   val renderAdapter: RenderAdapter
   
-  def findStuff(modelview: ModelView, chrid: gcid) = modelview.character(chrid) match {
-    case Some(gc) => gc.stuff.groupBy(_.itemtype).map(ntr => (ntr._1, ntr._2.toSeq))
-    case None => Map[ItemType, Seq[Item]]()
+  def getStuff(modelview: ModelView, chrid: gcid) = modelview.character(chrid) match {
+    case Some(gc) =>
+      gc.stuff.groupBy(_.itemtype).map(ntr => (ntr._1, ntr._2.toSeq)).toSeq
+      .sortBy(_._1.name).flatMap(_._2).drop(offset).groupBy(_.itemtype)
+    case None => Map[ItemType, Seq[Item]]().toSeq
   }
   
   def generateList(mv: ModelView, chrid: gcid) = {
-    val stuff = findStuff(mv, chrid)
+    var pos = -1
+    val stuff = getStuff(mv, chrid)
     val stufflisting = renderAdapter.Listing((for ((tp, items) <- stuff) yield {
-      renderAdapter.Frame(renderAdapter.Label(tp.name, false),
-          renderAdapter.Listing(for (it <- items) yield renderAdapter.Label(it.name, false)))
+      renderAdapter.Frame(renderAdapter.Label(tp.name), renderAdapter.Listing(for (it <- items) yield {
+        pos += 1
+        if (pos != selected) renderAdapter.Label(it.name)
+        else renderAdapter.Label(it.name, highlighted = true)
+      }))
     }).toSeq)
     renderAdapter.Frame(renderAdapter.Label("Inventory", true), stufflisting)
   }

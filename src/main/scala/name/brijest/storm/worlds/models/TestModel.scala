@@ -26,7 +26,7 @@ class TestModel(val id: mid, sz: (Int, Int), world: World) extends BasicModel(sz
     }
     
     // add character
-    val chr = new world.PlayerCharacter(pid(1)) {
+    val chr = new world.PlayerRPGCharacter(pid(1)) {
       def world = TestModel.this.world
       def speed = 100
       def playerColor = Color.blue
