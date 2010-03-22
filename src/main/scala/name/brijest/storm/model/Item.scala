@@ -7,7 +7,7 @@ import name.brijest.storm.model._
 
 
 trait ItemType {
-  def name: String = getClass.getSimpleName
+  def name: String = getClass.getSimpleName.takeWhile(_ != '$')
 }
 
 

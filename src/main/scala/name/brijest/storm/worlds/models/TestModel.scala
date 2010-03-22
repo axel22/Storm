@@ -5,6 +5,7 @@ import name.brijest.storm.model.impl.characters._
 import name.brijest.storm.model.impl.managers._
 import name.brijest.storm.model.impl.models._
 import name.brijest.storm.model._
+import name.brijest.storm.model.impl.elements.food._
 
 
 class TestModel(val id: mid, sz: (Int, Int), world: World) extends BasicModel(sz) {
@@ -40,6 +41,7 @@ class TestModel(val id: mid, sz: (Int, Int), world: World) extends BasicModel(sz
         def strength = 1
       }
     }
+    chr.stuff add LoafOfBread()
     ad.addCharacter((5, 5), chr)
   }
   init
