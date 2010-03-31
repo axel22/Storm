@@ -36,36 +36,43 @@ trait MovementActions extends Commands[States#MainGuiState] {
     def bindings = Seq("u".t)
     def shortcut = "up"
   }
+  
   val MoveRightUpCreator = new MoveCreator {
     def create(c: Context[States#MainGuiState]) = create((1, -1), c)
     def bindings = Seq("i".t)
     def shortcut = "upright"
   }
+  
   val MoveLeftUpCreator = new MoveCreator {
     def create(c: Context[States#MainGuiState]) = create((-1, -1), c)
     def bindings = Seq("y".t)
     def shortcut = "upleft"
   }
+  
   val MoveDownCreator = new MoveCreator {
     def create(c: Context[States#MainGuiState]) = create((0, 1), c)
     def bindings = Seq("m".t)
     def shortcut = "down"
   }
+  
   val MoveRightDownCreator = new MoveCreator {
     def create(c: Context[States#MainGuiState]) = create((1, 1), c)
     def bindings = Seq(",".t)
     def shortcut = "downright"
   }
+  
   val MoveLeftDownCreator = new MoveCreator {
     def create(c: Context[States#MainGuiState]) = create((-1, 1), c)
     def bindings = Seq("n".t)
     def shortcut = "downleft"
   }
+  
   val MoveRightCreator = new MoveCreator {
     def create(c: Context[States#MainGuiState]) = create((1, 0), c)
     def bindings = Seq("k".t)
     def shortcut = "right"
   }
+  
   val MoveLeftCreator = new MoveCreator {
     def create(c: Context[States#MainGuiState]) = create((-1, 0), c)
     def bindings = Seq("h".t)
