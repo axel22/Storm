@@ -4,7 +4,7 @@ package impl.elements.food
 
 
 
-case class Apple() extends AbstractFood {
+class Apple() extends AbstractFood {
   def color = Color(0, 200, 0)
   def name = "Apple"
   def nutritionalValue = 1000000

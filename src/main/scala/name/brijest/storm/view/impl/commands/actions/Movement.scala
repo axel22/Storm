@@ -15,7 +15,7 @@ trait MovementActions extends Commands[States#MainGuiState] {
     def create(dir: (Int, Int), cc: Context[States#MainGuiState]) = {
       // check if its possible to move
       // then either change gui state to return an error message, or move character
-      val chrid = cc.player.characterid
+      val chrid = cc.player.characterid.asgcid.get
       val Some(pos) = cc.modelview.characterPos(chrid)
       val Some(chr) = cc.modelview.character(chrid)
       if (cc.modelview.walkable(chr, pos + dir)) {

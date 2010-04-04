@@ -1,10 +1,11 @@
 package name.brijest.storm.model.impl.actions
 
 
-import name.brijest.storm.model._
+import name.brijest.storm.model.gcid
+import name.brijest.storm.model.ModelAdapter
 
 
-class MoveCharacter(chrid: cid, dest: (Int, Int))
+class MoveCharacter(chrid: gcid, dest: (Int, Int))
 extends DisplaceCharacter(chrid, dest) with CharacterAction {
   def timecost = 1000
   def energycost = 1000

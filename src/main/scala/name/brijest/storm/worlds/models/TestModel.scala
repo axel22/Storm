@@ -41,8 +41,10 @@ class TestModel(val id: mid, sz: (Int, Int), world: World) extends BasicModel(sz
         def strength = 1
       }
     }
-    chr.stuff add LoafOfBread()
-    chr.stuff add Apple()
+    for (i <- 0 until 20) {
+      chr.stuff add new LoafOfBread()
+      chr.stuff add new Apple()
+    }
     ad.addCharacter((5, 5), chr)
   }
   init

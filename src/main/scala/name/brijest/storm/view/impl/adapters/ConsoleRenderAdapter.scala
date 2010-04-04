@@ -99,6 +99,8 @@ class ConsoleRenderAdapter(val csi: ConsoleSystemInterface) extends RenderAdapte
   
   val frameInsets = (2, 0, 0, 0)
   
+  val labelHeight = 1
+  
   def displayMap(view: ModelView, location: (Int, Int)) {
     val dims = mapDims
     for (pos <- location to (location + dims._2)) {
