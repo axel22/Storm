@@ -13,7 +13,7 @@ trait InventoryActions extends Commands[States#InventoryState] {
     def create(c: Context[States#InventoryState], dir: Int) = GuiChangeCommand { gs: States#InventoryState =>
       val stuff = gs.getStuff(c.modelview, c.player.characterid.asgcid.get)
       val nval = gs.selected + dir
-      if (nval >= 0 && nval < stuff.flatMap(_._2).size) gs.selected = nval
+      if (nval >= 0 && nval < (stuff.flatMap(_._2).size + stuff.size)) gs.selected = nval
       gs
     }
   }

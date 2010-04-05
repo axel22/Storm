@@ -20,30 +20,42 @@ trait InventoryUtils {
     case None => Map[ItemType, Seq[Item]]().toSeq
   }
   
+  private var cachedList: Option[renderAdapter.Frame] = None
+  
   def generateList(mv: ModelView, chrid: gcid) = {
-    var pos = -1
-    var focusedpos = 0
-    var realpos = -1
     val stuff = getStuff(mv, chrid)
     val stufflisting = renderAdapter.Listing((for ((tp, items) <- stuff) yield {
-      realpos += 1
       renderAdapter.Label(tp.name) +: (for (it <- items) yield {
-        pos += 1
-        realpos += 1
-        if (pos == selected) focusedpos = realpos
-        if (pos != selected) renderAdapter.Label("  " + it.name)
-        else renderAdapter.Label("  " + it.name, highlighted = true)
+        renderAdapter.Label("  " + it.name)
       })
     }).flatMap(n => n).toSeq)
-    stufflisting.focusOn = focusedpos
-    renderAdapter.Frame(renderAdapter.Label("Inventory", true), stufflisting)
+    stufflisting.focusOn = selected
+    stufflisting
   }
+  
+  def highlightList(stufflist: renderAdapter.Listing) = {
+    val hl = stufflist.lst(selected)
+    for (lb @ renderAdapter.Label(str, c, h) <- stufflist.lst) lb.highlighted = lb == hl
+    stufflist
+  }
+  
+  def enframeList(sl: renderAdapter.Listing) = renderAdapter.Frame(renderAdapter.Label("Inventory", true), sl)
+  
+  def getList(mv: ModelView, chrid: gcid) = {
+    if (cachedList == None) cachedList = Some(enframeList(generateList(mv, chrid)))
+    val renderAdapter.Frame(label, inner @ renderAdapter.Listing(lst)) = cachedList.get
+    highlightList(inner)
+    inner.focusOn = selected
+    cachedList.get
+  }
+  
 }
 
 
 trait InventoryRenderer[State <: States#InventoryState] extends Renderer[State] {
   def render(ra: RenderAdapter, context: Context[State]) {
-    val stufflist = context.guistate.generateList(context.modelview, context.player.characterid.asgcid.get)
+    val gs = context.guistate
+    val stufflist = gs.getList(context.modelview, context.player.characterid.asgcid.get)
     ra.clear
     stufflist.display(0, 0, ra.screenDims._1, ra.screenDims._2)
   }

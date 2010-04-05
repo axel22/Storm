@@ -19,20 +19,20 @@ trait Widgets {
   
   case class Listing(lst: Seq[Widget]) extends Widget {
     var offset = 0
-    var focusOn = 0
+    private var focuspos = 0
+    private def numFits(sq: Seq[Widget], h: Int) = {
+      var sum = 0
+      sq.prefixLength(w => {val b = sum < h; sum += w.height; b})
+    }
+    def focusOn = focuspos
+    def focusOn_=(p: Int) = focuspos = p
     def display(x: Int, y: Int, w: Int, h: Int): (Int, Int) = {
-      def numFits(sq: Seq[Widget]) = {
-        var sum = 0
-        sq.prefixLength(w => {val b = sum < h; sum += w.height; b})
-      }
-      
       // check if focus is before
-      if (focusOn < offset) offset = focusOn
+      if (focuspos < offset) offset = focuspos
       
       // check if focus is after
       var trimlst = lst.drop(offset)
-      println(numFits(trimlst) + " vs. " + (focusOn - offset))
-      while (numFits(trimlst) <= (focusOn - offset)) {
+      while (numFits(trimlst, h) <= (focuspos - offset)) {
         trimlst = trimlst.tail
         offset += 1
       }
@@ -58,13 +58,17 @@ trait Widgets {
     def height = title.height + inner.height
   }
   
-  class Label(val str: String, val centered: Boolean, val highlighted: Boolean) extends Widget {
+  class Label(val str: String, val centered: Boolean, var highlighted: Boolean) extends Widget {
     def display(x: Int, y: Int, w: Int, h: Int): (Int, Int) = drawLabel(this, x, y, w, h)
     def height = labelHeight
   }
   
   object Label {
     def apply(str: String, centered: Boolean = false, highlighted: Boolean = false) = new Label(str, centered, highlighted)
+    def unapply(w: Label): Option[(String, Boolean, Boolean)] = if (w.isInstanceOf[Label]) {
+      val lb = w.asInstanceOf[Label]
+      Some(lb.str, lb.centered, lb.highlighted)
+    } else None
   }
   
 }
