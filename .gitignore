@@ -13,3 +13,6 @@
 .project
 /project/boot/*
 /project/build/target/*
+
+# backup latex files
+/docs/ideas/*.tex~
