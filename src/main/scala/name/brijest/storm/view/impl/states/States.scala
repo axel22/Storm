@@ -1,10 +1,10 @@
-package name.brijest.storm.view
+package name.brijest.storm.view.impl.states
 
 
 
-import name.brijest.storm.view.impl.states._
-import name.brijest.storm.view.impl.commands._
-import name.brijest.storm.view.impl.commands.actions._
+import name.brijest.storm.view.GuiState
+import name.brijest.storm.view.RenderAdapter
+import name.brijest.storm.view.impl.states.commands._
 
 
 

@@ -1,12 +1,11 @@
-package name.brijest.storm.view.impl.commands.actions
+package name.brijest.storm.view.impl.states
+package commands
 
 
 import name.brijest.storm.model.impl.actions._
 import name.brijest.storm.model._
 import name.brijest.storm.view.KeyToken._
 import name.brijest.storm.view._
-
-
 
 
 trait MovementActions extends Commands[States#MainGuiState] {

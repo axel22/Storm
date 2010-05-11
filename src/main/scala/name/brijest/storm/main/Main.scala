@@ -3,13 +3,7 @@ package name.brijest.storm.main
 
 import scala.collection._
 
-import name.brijest.storm.model._
 import name.brijest.storm.model.impl.managers.PlayerManager
-import name.brijest.storm.controller._
-import name.brijest.storm.view.impl.adapters._
-import name.brijest.storm.view.impl.input._
-import name.brijest.storm.view.impl.commands._
-import name.brijest.storm.view._
 
 
 object Main {

@@ -7,6 +7,7 @@ import scala.annotation.unchecked.uncheckedStable
 import name.brijest.storm.model._
 import name.brijest.storm.controller._
 import name.brijest.storm.controller.impl.commands._
+import name.brijest.storm.view.impl.states.States
 
 
 class TurnBasedView(ra: RenderAdapter, ia: InputAdapter, val player: PlayerOwner)

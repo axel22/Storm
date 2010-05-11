@@ -1,8 +1,9 @@
-package name.brijest.storm.view.impl.commands.actions
+package name.brijest.storm.view.impl.states.commands
 
 
 import name.brijest.storm.view.KeyToken._
 import name.brijest.storm.view._
+import name.brijest.storm.view.impl.states.States
 
 
 trait DialogActions extends Commands[States#MainGuiState] {
